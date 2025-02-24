@@ -253,6 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080380083094014564}
   - component: {fileID: 8573338640330146757}
+  - component: {fileID: 2315976855072396983}
   m_Layer: 0
   m_Name: TrackPoint
   m_TagString: Untagged
@@ -269,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 5735689690154343037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -176.8021, y: -35.639606, z: 182.81187}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -292,6 +293,27 @@ MonoBehaviour:
   IsFirst: 0
   IsLast: 0
   hint: {fileID: 8057705562750739306}
+--- !u!65 &2315976855072396983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735689690154343037}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 34.393276, y: 10.115931, z: 2.3457432}
+  m_Center: {x: 2.33, y: 3.12, z: 11.345798}
 --- !u!1 &8057705562750739306
 GameObject:
   m_ObjectHideFlags: 0

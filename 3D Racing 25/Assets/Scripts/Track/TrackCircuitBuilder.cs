@@ -36,7 +36,7 @@ public class TrackCircuitBuilder : MonoBehaviour
 
     private static void MakeLinks(TrackPoint[] points, TrackType type)
     {
-        for (int i = 0; i < points.Length; i++)
+        for (int i = 0; i < points.Length - 1; i++)
         {
             points[i].Next = points[i + 1];
         }
@@ -53,7 +53,7 @@ public class TrackCircuitBuilder : MonoBehaviour
 
         if (type == TrackType.Sprint)
         {
-            points[points.Length].IsLast = true;
+            points[points.Length - 1].IsLast = true;
         }
         if (type == TrackType.Circular)
         {

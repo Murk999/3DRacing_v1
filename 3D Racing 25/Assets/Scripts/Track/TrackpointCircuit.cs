@@ -39,6 +39,14 @@ public class TrackPointCircuit : MonoBehaviour
         points = TrackCircuitBuilder.Build(transform, type);
     }
 
+    private void OnDestroy()
+    {
+        for (int i = 0; i < points.Length; i++) // Проходим по массиву чекпоинтов
+        {
+            points[i].Triggered += OnTrackPointTriggered; // Отписываемся на событие 
+        }
+    }
+
     private void OnTrackPointTriggered(TrackPoint trackPoint)
     {
         if (trackPoint.IsTarget == false) return;
@@ -49,9 +57,9 @@ public class TrackPointCircuit : MonoBehaviour
 
         if (trackPoint.IsLast == true)
         {
-            if(type == TrackType.Sprint)
+            lapsCompleted++;
+            if (type == TrackType.Sprint)
             {
-                lapsCompleted++;
                 if (type == TrackType.Sprint)
                 {
                     LapCompleted?.Invoke(lapsCompleted);
