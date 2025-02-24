@@ -31,18 +31,18 @@ public class Car : MonoBehaviour //информационная модель автомобиля
 
     [SerializeField] private int maxSpeed; //значение для максиальной скорости
     
-    public float LinearVelecity => chassis.LinearVelocity; //ссылается на шасси
-    public float NormalizeLinearVelecity => chassis.LinearVelocity / maxSpeed;
+    public float LinearVelocity => chassis.LinearVelocity; //ссылается на шасси
+    public float NormalizeLinearVelocity => chassis.LinearVelocity / maxSpeed;
     public float WheelSpeed => chassis.GetWheelSpeed();
     public float MaxSpeed => maxSpeed;
 
     public float EngineRmp => engineRpm;
     public float EngineMaxRpm => engineMaxRpm;
 
-
     private CarChassis chassis; //ссылка на калеса
+    public Rigidbody Rigidbody => chassis == null? GetComponent<CarChassis>().Rigidbody: chassis.Rigidbody;
 
-    [SerializeField] private float linearVelecity;
+    [SerializeField] private float linearVelocity;
     public float ThrottleControl; //педаль газа
     public float SteerControl; //поворот
     public float BrakeControl; //тормоз
@@ -54,13 +54,13 @@ public class Car : MonoBehaviour //информационная модель автомобиля
 
     private void Update() //упарвление физикой автомобиля
     {
-        linearVelecity = LinearVelecity;
+        linearVelocity = LinearVelocity;
 
         UpdateEngineTorque();
 
         AutoGearShift();
 
-        if (LinearVelecity >= maxSpeed)
+        if (LinearVelocity >= maxSpeed)
             engineTorque = 0;
 
         chassis.MotorTorque = engineTorque * ThrottleControl;

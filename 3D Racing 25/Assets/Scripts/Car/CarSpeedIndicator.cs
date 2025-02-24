@@ -8,6 +8,6 @@ public class CarSpeedIndicator : MonoBehaviour
 
     private void Update()
     {
-        text.text = car.LinearVelecity.ToString("F0");
+        text.text = car.LinearVelocity.ToString("F0");
     }
 }

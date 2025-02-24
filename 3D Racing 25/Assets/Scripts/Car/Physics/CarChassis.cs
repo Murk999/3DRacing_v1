@@ -26,6 +26,7 @@ public class CarChassis : MonoBehaviour //физика всего автомобиля
     public float LinearVelocity => rigidbody.velocity.magnitude * 3.6f;
 
     private new Rigidbody rigidbody;
+    public Rigidbody Rigidbody => rigidbody == null? GetComponent<Rigidbody>(): rigidbody;
 
     private void Start()
     {

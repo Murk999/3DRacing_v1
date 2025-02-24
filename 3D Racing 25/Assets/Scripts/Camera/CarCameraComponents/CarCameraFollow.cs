@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour //слежение камеры
+public class CarCameraFollow : CarCameraComponent //слежение камеры
 {
-    [SerializeField] private Transform target; //на что будеи смотреть камера
-    [SerializeField] private new Rigidbody rigidbody; //чтобы брать скорость
-
     [Header("Offset")]
     [SerializeField] private float viewHeight; //регулирует угол наклона камеры
     [SerializeField] private float height; //высота
@@ -16,6 +13,9 @@ public class CameraFollow : MonoBehaviour //слежение камеры
     [SerializeField] private float rotationDamping;
     [SerializeField] private float heightDamping;
     [SerializeField] private float speedThreshold;
+
+    private Transform target; //на что будеи смотреть камера
+    private new Rigidbody rigidbody; //чтобы брать скорость
 
     private void FixedUpdate()
     {
@@ -39,5 +39,10 @@ public class CameraFollow : MonoBehaviour //слежение камеры
         //Rotation
         transform.LookAt(target.position + new Vector3(0, viewHeight, 0)); //куда будет смотреть камера
     }
-
+    public override void SetProperties(Car car, Camera camera)
+    {
+        base.SetProperties(car, camera);
+        target = car.transform;
+        rigidbody = car.Rigidbody;
+    }
 }
