@@ -12,8 +12,8 @@ public class SceneDependencies : MonoBehaviour
     [SerializeField] private TrackPointCircuit trackPointCircuit; // Ссылка на поинты
     [SerializeField] private Car car;
     [SerializeField] private CarCameraController carCameraController;
-    //[SerializeField] private RaceTimeTracker raceTimeTracker;
-    //[SerializeField] private RaceResultTime raceResultTime;
+    [SerializeField] private RaceTimeTracker raceTimeTracker;
+    [SerializeField] private RaceResultTime raceResultTime;
 
     private void Bind(MonoBehaviour mono)
     {
@@ -22,11 +22,10 @@ public class SceneDependencies : MonoBehaviour
         if (mono is IDependency<TrackPointCircuit>) (mono as IDependency<TrackPointCircuit>).Construct(trackPointCircuit);
         if (mono is IDependency<Car>) (mono as IDependency<Car>).Construct(car);
         if (mono is IDependency<CarCameraController>) (mono as IDependency<CarCameraController>).Construct(carCameraController);
-       // if (mono is IDependency<RaceTimeTracker>) (mono as IDependency<RaceTimeTracker>).Construct(raceTimeTracker);
-        //if (mono is IDependency<RaceResultTime>) (mono as IDependency<RaceResultTime>).Construct(raceResultTime);
+        if (mono is IDependency<RaceTimeTracker>) (mono as IDependency<RaceTimeTracker>).Construct(raceTimeTracker);
+        if (mono is IDependency<RaceResultTime>) (mono as IDependency<RaceResultTime>).Construct(raceResultTime);
     }
 
-    [System.Obsolete]
     private void Awake()
     {
         MonoBehaviour[] monoInScene = FindObjectsOfType<MonoBehaviour>(); // Находим все монобехи на сцене
@@ -34,7 +33,6 @@ public class SceneDependencies : MonoBehaviour
         for (int i = 0; i < monoInScene.Length; i++)
         {
             Bind(monoInScene[i]);
-
         }
     }
 }
