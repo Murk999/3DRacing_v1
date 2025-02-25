@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarCameraController : MonoBehaviour
+public class CarCameraController : MonoBehaviour, IDependency<RaceStateTracker>
 {
     [SerializeField] private Car car;
     [SerializeField] private new Camera camera;
@@ -12,7 +12,8 @@ public class CarCameraController : MonoBehaviour
     [SerializeField] private CarCameraFovCorrector fovCorrectorer;
     [SerializeField] private CameraPathFollower pathFollower;
 
-    [SerializeField] private RaceStateTracker raceStateTracker;
+    private RaceStateTracker raceStateTracker;
+    public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
     private void Awake()
     {

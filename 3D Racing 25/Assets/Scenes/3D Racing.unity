@@ -360,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75727e26ecde0484f9e893335b19ef78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceStateTracker: {fileID: 421232367}
 --- !u!1 &82389776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,9 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f5c536097d7bb4090dda31055f164e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceStateTracker: {fileID: 421232367}
   text: {fileID: 266630221}
-  countDownTimer: {fileID: 568200696}
 --- !u!4 &267953711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4508696319873668, guid: 73767e07adddc394d82b994801f89bbb, type: 3}
@@ -1695,7 +1692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321a3be60d45d3743a979d73a1268f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackPointCircuit: {fileID: 1718331486}
   countdownTimer: {fileID: 568200696}
   lapsToComplete: 2
 --- !u!1 &506975044
@@ -2338,6 +2334,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1635222669}
   - {fileID: 421232366}
   - {fileID: 58430752}
   - {fileID: 1413398936}
@@ -3644,7 +3641,6 @@ MonoBehaviour:
   shaker: {fileID: 963194231}
   fovCorrectorer: {fileID: 963194230}
   pathFollower: {fileID: 963194236}
-  raceStateTracker: {fileID: 421232367}
 --- !u!114 &963194236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3659,7 +3655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 1997674386960929187}
   lookTarget: {fileID: 1997674386960929188}
-  movementSpeed: 20
+  movementSpeed: 10
 --- !u!1001 &966723113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4353,8 +4349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aba01252c4d4344dbfcfcf37530a3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carControl: {fileID: 1434989876}
-  raceStateTracker: {fileID: 421232367}
 --- !u!1 &1434989875
 GameObject:
   m_ObjectHideFlags: 0
@@ -4750,6 +4744,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3a65d5db18b9604fb70f0eb0db004e9, type: 3}
+--- !u!1 &1635222668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1635222669}
+  - component: {fileID: 1635222670}
+  m_Layer: 0
+  m_Name: SceneDependencies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1635222669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635222668}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 710906265}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1635222670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635222668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b388cab6b3db2b14bac547f3001c3b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raceStateTracker: {fileID: 421232367}
+  carInputControl: {fileID: 1434989876}
+  trackPointCircuit: {fileID: 1718331486}
+  car: {fileID: 2002790991}
+  carCameraController: {fileID: 963194235}
 --- !u!4 &1658149350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: c5841a33c1c70f84fadfae9a11bd1e88, type: 3}
@@ -5544,7 +5587,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1583198785860487988, guid: 7979e70f002d77848a0656aa3cf026a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 1583198785860487988, guid: 7979e70f002d77848a0656aa3cf026a1, type: 3}
       propertyPath: m_LocalPosition.y
