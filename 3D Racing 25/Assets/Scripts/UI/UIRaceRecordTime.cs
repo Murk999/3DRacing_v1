@@ -9,6 +9,13 @@ public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDep
     [SerializeField] private GameObject playerRecordObject;
     [SerializeField] private Text goldRecordTime;
     [SerializeField] private Text playerRecordTime;
+    [SerializeField] private GameObject playerRaceRecord;
+    [SerializeField] private Text playerRaceTime;
+    [SerializeField] private RaceTimeTracker raceTimeTracker;
+    [SerializeField] private GameObject Record;
+    [SerializeField] private Text RecordTime;
+
+    // [SerializeField] private Text recordLable;
 
     private RaceResultTime raceResultTime;
     public void Construct(RaceResultTime obj) => raceResultTime = obj;
@@ -21,8 +28,11 @@ public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDep
         raceStateTracker.Started += OnRaceStart;
         raceStateTracker.Completed += OnRaceCompleted;
 
-        goldRecordObject.SetActive(false);
-        playerRecordObject.SetActive(false);
+        goldRecordObject.SetActive(false);  // ++
+        playerRecordObject.SetActive(false);//++
+
+        playerRaceRecord.SetActive(false);
+        Record.SetActive(false);
     }
 
     private void OnDestroy()
@@ -33,21 +43,39 @@ public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDep
 
     private void OnRaceStart()
     {
-        if(raceResultTime.PlayerRecordTime > raceResultTime.GoldTime || raceResultTime.RecordWasSet == false)
+        // Если текущий рекорд больше чем золотой или             рекорд не установлен то есть первый раз едем
+        if (raceResultTime.PlayerRecordTime > raceResultTime.GoldTime || raceResultTime.RecordWasSet == false)
         {
             goldRecordObject.SetActive(true);
-            goldRecordTime.text = StringTime.SecondToTimeString(raceResultTime.GoldTime);
+            goldRecordTime.text = StringTime.SecondToTimeString(raceResultTime.GoldTime); // То показываем голд время           
         }
-
-        if(raceResultTime.PlayerRecordTime != 0)
+        // Если рекорд установлен 
+        if (raceResultTime.RecordWasSet == true)
         {
             playerRecordObject.SetActive(true);
-            playerRecordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime);
+            playerRecordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime); // То показываем результат игрока
+
         }
     }
+
     private void OnRaceCompleted()
     {
         goldRecordObject.SetActive(false);
         playerRecordObject.SetActive(false);
+        playerRaceRecord.SetActive(true);
+        Record.SetActive(true);
+        playerRaceTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
+        if (raceResultTime.RecordWasSet == false && raceTimeTracker.CurrentTime < raceResultTime.GoldTime)
+        {
+            RecordTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
+        }
+        else if (raceResultTime.RecordWasSet == true && raceTimeTracker.CurrentTime < raceResultTime.PlayerRecordTime)
+        {
+            RecordTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
+        }
+        else
+        {
+            RecordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime);
+        }
     }
 }

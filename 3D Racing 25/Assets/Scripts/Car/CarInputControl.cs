@@ -22,7 +22,7 @@ public class CarInputControl : MonoBehaviour //управление автомобилем
 
         UpdateAxis();
 
-        UpdateTrottleAndBreak();
+        UpdateThrottleAndBreak();
         UpdateSteer();
 
         UpdateAutoBrake();
@@ -39,7 +39,7 @@ public class CarInputControl : MonoBehaviour //управление автомобилем
         }
     }
 
-    private void UpdateTrottleAndBreak()
+    private void UpdateThrottleAndBreak()
     {
 
         if (Mathf.Sign(verticalAxis) == Mathf.Sign(wheelSpeed) || Mathf.Abs(wheelSpeed) < 0.5f)
@@ -84,8 +84,8 @@ public class CarInputControl : MonoBehaviour //управление автомобилем
         horizontalAxis = Input.GetAxis("Horizontal");
         handbreakAxis = Input.GetAxis("Jump");
     }
-    
-    public void Stop()
+
+    public void Reset()
     {
         verticalAxis = 0;
         horizontalAxis = 0;
@@ -93,6 +93,13 @@ public class CarInputControl : MonoBehaviour //управление автомобилем
 
         car.ThrottleControl = 0;
         car.SteerControl = 0;
+        car.BrakeControl = 0;
+    }
+
+    public void Stop()
+    {
+        Reset();
+     
         car.BrakeControl = 1;
     }
 }

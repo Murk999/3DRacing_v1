@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -96,5 +97,11 @@ public class CarChassis : MonoBehaviour //физика всего автомобиля
             wheelAxles[i].ApplySteerAngle(SteerAngle, wheelBaseLength);
             wheelAxles[i].ApplyBreakTorque(BrakeTorque);
         }
+    }
+
+    public void Reset()
+    {
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
     }
 }

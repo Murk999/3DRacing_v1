@@ -6,7 +6,7 @@ public class ActivatedTrackPoint : TrackPoint
 
     private void Start()
     {
-        hint.SetActive(false);
+        hint.SetActive(isTarget);
     }
     protected override void OnPassed()
     {

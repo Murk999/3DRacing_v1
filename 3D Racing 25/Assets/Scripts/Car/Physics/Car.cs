@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -136,5 +137,25 @@ public class Car : MonoBehaviour //информационная модель автомобиля
         engineRpm = Mathf.Clamp(engineRpm,engineMinRpm, engineMaxRpm);
 
         engineTorque = engineTorqueCurve.Evaluate(engineRpm / engineMaxRpm) * engineMaxTorque * finalDriveRatio * Mathf.Sign(selectedGear) * gears[0]; //вычисление крутящего момета
+    }
+
+    public void Reset()
+    {
+        chassis.Reset();
+
+        chassis.MotorTorque = 0;
+        chassis.BrakeTorque = 0;
+        chassis.SteerAngle = 0;
+
+        ThrottleControl = 0;
+        BrakeControl = 0;
+        SteerControl = 0;
+    }
+    public void Respawn(Vector3 position, Quaternion rotation)
+    {
+        Reset();
+
+        transform.position = position;
+        transform.rotation = rotation;
     }
 }
