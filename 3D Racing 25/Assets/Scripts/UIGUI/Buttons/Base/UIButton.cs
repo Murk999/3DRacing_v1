@@ -31,19 +31,19 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         focus = false;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (Interactable == false) return; // Если не можем взаимодействовать с кнопкой то выходим из метода 
         PointerEnter?.Invoke(this); // Включаем событие 
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (Interactable == false) return; // Если не можем взаимодействовать с кнопкой то выходим из метода 
         PointerExit?.Invoke(this);  // Включаем событие 
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (Interactable == false) return; // Если не можем взаимодействовать с кнопкой то выходим из метода 
         PointerClick?.Invoke(this);  // Включаем событие 
