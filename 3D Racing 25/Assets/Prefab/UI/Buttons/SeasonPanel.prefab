@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31834819fdf12bd41a2c7d22e1676a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interactable: 0
+  Interactable: 1
   OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -398,7 +398,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  selectImage: {fileID: 0}
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UISelectableButtonContainer, Assembly-CSharp
+        m_MethodName: SetInteractable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  selectImage: {fileID: 4274597101166220383}
   OnSelect:
     m_PersistentCalls:
       m_Calls: []
@@ -921,11 +933,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31834819fdf12bd41a2c7d22e1676a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interactable: 0
+  Interactable: 1
   OnClick:
     m_PersistentCalls:
       m_Calls: []
-  selectImage: {fileID: 0}
+  selectImage: {fileID: 1013485973645716803}
   OnSelect:
     m_PersistentCalls:
       m_Calls: []
