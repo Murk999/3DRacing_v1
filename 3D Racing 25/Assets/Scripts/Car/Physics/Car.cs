@@ -3,11 +3,12 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CarChassis))]
+[RequireComponent(typeof(AudioSource))]
 public class Car : MonoBehaviour //информационна€ модель автомобил€
 {
     public event UnityAction<string> GearChanged;
     [SerializeField] private new AudioSource audio;
-
+    
     [SerializeField] private float maxSteerAngle; //ссыока на макс поворот
     [SerializeField] private float maxBrakeTorque; //ссылка на макс тормоз
 
@@ -23,7 +24,7 @@ public class Car : MonoBehaviour //информационна€ модель автомобил€
     [SerializeField] private float[] gears;
     [SerializeField] private float finalDriveRatio;
 
-    [SerializeField] private int selectedGearIndex; //кака€ прередача включена
+    [SerializeField] private int m_SelectedGearIndex; //кака€ прередача включена
 
     [SerializeField] private float selectedGear;
     [SerializeField] private float rearGear;
@@ -31,7 +32,11 @@ public class Car : MonoBehaviour //информационна€ модель автомобил€
     [SerializeField] private float downShiftEngineRpm;
 
     [SerializeField] private int maxSpeed; //значение дл€ максиальной скорости
-    
+
+    [SerializeField] private AudioClip m_GearShiftSound;
+
+    private AudioSource m_AudioSource;
+
     public float LinearVelocity => chassis.LinearVelocity; //ссылаетс€ на шасси
     public float NormalizeLinearVelocity => chassis.LinearVelocity / maxSpeed;
     public float WheelSpeed => chassis.GetWheelSpeed();
@@ -75,7 +80,7 @@ public class Car : MonoBehaviour //информационна€ модель автомобил€
     {
         if (selectedGear == rearGear) return "R";
         if (selectedGear == 0) return "N";
-        return (selectedGearIndex + 1).ToString();
+        return (m_SelectedGearIndex + 1).ToString();
     }
 
     private void AutoGearShift() //автоматическое перечключение
@@ -97,12 +102,14 @@ public class Car : MonoBehaviour //информационна€ модель автомобил€
 
     public void UpGear() //верхн€€ передача
     {
-        ShiftGear(selectedGearIndex + 1);
+        ShiftGear(m_SelectedGearIndex + 1);
+        //PlayGearShiftSound();
     }
 
     public void DownGear() //опустить передачу вниз
     {
-        ShiftGear(selectedGearIndex - 1);
+        ShiftGear(m_SelectedGearIndex - 1);
+        //PlayGearShiftSound();
     }
 
     public void ShiftToReverseGear()
@@ -126,11 +133,20 @@ public class Car : MonoBehaviour //информационна€ модель автомобил€
     {
         gearIndex = Mathf.Clamp(gearIndex, 0, gears.Length - 1);
         selectedGear = gears[gearIndex];
-        selectedGearIndex = gearIndex;
+        m_SelectedGearIndex = gearIndex;
 
         GearChanged?.Invoke(GetSelectedGearName());
     }
 
+    /*
+    public void PlayGearShiftSound() // ??? 
+    {
+        if (m_GearShiftSound != null && m_SelectedGearIndex != 0 && m_SelectedGearIndex != 1 && m_SelectedGearIndex != 5)
+        {
+            m_AudioSource.PlayOneShot(m_GearShiftSound);
+        }
+    }
+    */
     private void UpdateEngineTorque()
     {
         engineRpm = engineMinRpm + Mathf.Abs(chassis.GetAverageRpm() * selectedGear * finalDriveRatio);

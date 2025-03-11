@@ -8,12 +8,12 @@ public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDep
     [SerializeField] private GameObject goldRecordObject;
     [SerializeField] private GameObject playerRecordObject;
     [SerializeField] private Text goldRecordTime;
-    [SerializeField] private Text playerRecordTime;
-    [SerializeField] private GameObject playerRaceRecord;
+    //[SerializeField] private Text playerRecordTime;
+    //[SerializeField] private GameObject playerRaceRecord;
     [SerializeField] private Text playerRaceTime;
     [SerializeField] private RaceTimeTracker raceTimeTracker;
-    [SerializeField] private GameObject Record;
-    [SerializeField] private Text RecordTime;
+    //[SerializeField] private GameObject Record;
+    //[SerializeField] private Text RecordTime;
 
     // [SerializeField] private Text recordLable;
 
@@ -31,8 +31,8 @@ public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDep
         goldRecordObject.SetActive(false);  // ++
         playerRecordObject.SetActive(false);//++
 
-        playerRaceRecord.SetActive(false);
-        Record.SetActive(false);
+        //playerRaceRecord.SetActive(false);
+        //Record.SetActive(false);
     }
 
     private void OnDestroy()
@@ -53,7 +53,7 @@ public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDep
         if (raceResultTime.RecordWasSet == true)
         {
             playerRecordObject.SetActive(true);
-            playerRecordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime); // То показываем результат игрока
+           // playerRecordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime); // То показываем результат игрока
 
         }
     }
@@ -62,20 +62,20 @@ public class UIRaceRecordTime : MonoBehaviour, IDependency<RaceResultTime>, IDep
     {
         goldRecordObject.SetActive(false);
         playerRecordObject.SetActive(false);
-        playerRaceRecord.SetActive(true);
-        Record.SetActive(true);
+        //playerRaceRecord.SetActive(true);
+       // Record.SetActive(true);
         playerRaceTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
         if (raceResultTime.RecordWasSet == false && raceTimeTracker.CurrentTime < raceResultTime.GoldTime)
         {
-            RecordTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
+            //RecordTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
         }
         else if (raceResultTime.RecordWasSet == true && raceTimeTracker.CurrentTime < raceResultTime.PlayerRecordTime)
         {
-            RecordTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
+            //RecordTime.text = StringTime.SecondToTimeString(raceTimeTracker.CurrentTime);
         }
         else
         {
-            RecordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime);
+            //RecordTime.text = StringTime.SecondToTimeString(raceResultTime.PlayerRecordTime);
         }
     }
 }

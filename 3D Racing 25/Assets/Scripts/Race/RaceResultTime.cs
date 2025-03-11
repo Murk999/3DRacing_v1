@@ -7,7 +7,9 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceTimeTracker>, IDepe
     public const string SaveMark = "_player_best_time";
 
     public event UnityAction ResultUpdate;
-
+    
+    public static int UnlockedTrackIndex;
+    
     [SerializeField] private float goldTime;
 
     private float playerRecordTime;
@@ -32,12 +34,17 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceTimeTracker>, IDepe
     private void Start()
     {
         raceStateTracker.Completed += OnRaceCompleted;
+        if (UnlockedTrackIndex == 0) goldTime = 10;
+        if (UnlockedTrackIndex == 1) goldTime = 55;
+        if (UnlockedTrackIndex == 2) goldTime = 60;
+        if (UnlockedTrackIndex == 3) goldTime = 100;
     }
 
     private void OnDestroy()
     {
         raceStateTracker.Completed -= OnRaceCompleted;
     }
+
 
     private void OnRaceCompleted()
     {
@@ -46,6 +53,11 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceTimeTracker>, IDepe
         if(raceTimeTracker.CurrentTime < absoluteRecord || playerRecordTime == 0)
         {
             playerRecordTime = raceTimeTracker.CurrentTime;
+
+            if (raceTimeTracker.CurrentTime < goldTime)
+            {
+                UnlockedTrackIndex++;
+            }
 
             Save();
         }
@@ -70,10 +82,22 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceTimeTracker>, IDepe
     private void Load()
     {
         playerRecordTime = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + SaveMark, 0);
+
+        if (PlayerPrefs.HasKey("UnlockedTrackIndex"))
+        {
+            UnlockedTrackIndex = PlayerPrefs.GetInt("UnlockedTrackIndex", 0);
+        }
     }
 
     private void Save()
     {
         PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + SaveMark, playerRecordTime);
+
+        PlayerPrefs.SetInt("UnlockedTrackIndex", UnlockedTrackIndex);
+    }
+
+    public int GetUnlockedTrackIndex()
+    {
+        return UnlockedTrackIndex;
     }
 }

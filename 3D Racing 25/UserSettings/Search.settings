@@ -8,6 +8,12 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.3BE40471" = "int_med_off"
+	"OpenInspectorPreview.3BE40471" = "0"
+	"currentGroup.3BE40471" = "asset"
+	"last_search.110DEAF1" = "int_med_off"
+	"OpenInspectorPreview.110DEAF1" = "0"
+	"currentGroup.110DEAF1" = "asset"
 }
 providers = {
 	adb = {
@@ -59,6 +65,12 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"int_med_off"
+	"int_maxRPM"
+	"int_low_off"
+	"int_high_on"
+	""
+	"int_high_off"
 ]
 searchItemFavorites = [
 ]

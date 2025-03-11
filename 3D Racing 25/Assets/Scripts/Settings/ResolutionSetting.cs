@@ -55,6 +55,6 @@ public class ResolutionSetting : Setting
     }
     private void Save()
     {
-        PlayerPrefs.SetFloat(title, currentResolutionIndex);
+        PlayerPrefs.SetInt(title, currentResolutionIndex);
     }
 }

@@ -46,6 +46,6 @@ public class GraphicsQualitySetting : Setting
     }
     private void Save()
     {
-        PlayerPrefs.SetFloat(title, currentLevelIndex);
+        PlayerPrefs.SetInt(title, currentLevelIndex);
     }
 }
